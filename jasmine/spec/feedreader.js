@@ -88,24 +88,24 @@ $(function() {
          */
 
         beforeEach(function(done){
-            loadFeed(function(){
-                init();
+            //invokes/calls loadFeed function
+            loadFeed(0, function(){
                 done();
             });
         });
 
-
-
-
         it('loadFeed should be called on', function(done){
             spyOn(window, 'loadFeed');
-            expect(window.loadFeed).toHaveBeenCalled();
+            loadFeed();
             done();
+            expect(window.loadFeed).toHaveBeenCalled();
         });
 
-        //it('should complete its work', function(){
-        //expect(container).not.toBe(0);
-        //})
+        it('should have an entry in the feed container', function(done){
+            const container = document.querySelector('.feed');
+            expect(container).not.toBe(0);
+            done();
+        });
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
@@ -113,9 +113,16 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-/*    describe('New Feed Selection', function(done){
-        it('should ', function(){
-            done();
+    describe('New Feed Selection', function(done){
+
+        beforeEach(function(done){
+            loadFeed(0, done);
         });
-    });*/
+
+        it('should change content', function(done){
+            //loadFeed id to change or entry-link to change
+        expect('loadFeed[id]').not.toBe(0);
+        done();
+        });
+    });
 });
