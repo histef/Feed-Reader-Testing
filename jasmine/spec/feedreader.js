@@ -97,8 +97,8 @@ $(function() {
         it('loadFeed should be called on', function(done){
             spyOn(window, 'loadFeed');
             loadFeed();
-            done();
             expect(window.loadFeed).toHaveBeenCalled();
+            done();
         });
 
         it('should have an entry in the feed container', function(done){
@@ -121,9 +121,11 @@ $(function() {
             newFeed;
 
         beforeEach(function(done){
+            //call first loadfeed, save input
             loadFeed(0, ()=>{
                 initFeed = document.querySelector('.feed').innerHTML;                
             });
+            //call second loadfeed, THEN execute done() to signal to run test
             loadFeed(1, ()=>{
                 newFeed = document.querySelector('.feed').innerHTML;
             done();
@@ -133,5 +135,5 @@ $(function() {
         it('should change page content', function(){
             expect(newFeed !== initFeed).toBe(true);
         });
-    })
+    });
 });
