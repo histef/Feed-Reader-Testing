@@ -102,8 +102,10 @@ $(function() {
         });
 
         it('should have an entry in the feed container', function(done){
+            //could also use a .feed.child.length to be greater than 0;
             const container = document.querySelector('.feed');
-            expect(container).not.toBe(0);
+            const emptyContainer = container.innerHTML === "";
+            expect(emptyContainer).toEqual(false);
             done();
         });
     });
@@ -115,14 +117,22 @@ $(function() {
          */
     describe('New Feed Selection', function(done){
 
+        let initFeed;
+        let newFeed;
+
         beforeEach(function(done){
-            loadFeed(0, done);
+            loadFeed(0, ()=>{
+                initFeed = document.querySelector('.feed').innerHTML;
+                done()
+            });
         });
 
-        it('should change content', function(done){
-            //loadFeed id to change or entry-link to change
-        expect('loadFeed[id]').not.toBe(0);
-        done();
+        it('should change page content', function(done){
+            loadFeed(1, ()=>{
+                newFeed = document.querySelector('.feed').innerHTML;
+                done()
+            });
+            expect(initFeed).not.toBe(newFeed);
         });
     });
 });
