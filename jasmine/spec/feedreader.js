@@ -115,24 +115,23 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-    describe('New Feed Selection', function(done){
+    describe('New Feed Selection', function(){
 
-        let initFeed;
-        let newFeed;
+        let initFeed,
+            newFeed;
 
         beforeEach(function(done){
             loadFeed(0, ()=>{
-                initFeed = document.querySelector('.feed').innerHTML;
-                done()
+                initFeed = document.querySelector('.feed').innerHTML;                
+            });
+            loadFeed(1, ()=>{
+                newFeed = document.querySelector('.feed').innerHTML;
+            done();
             });
         });
 
-        it('should change page content', function(done){
-            loadFeed(1, ()=>{
-                newFeed = document.querySelector('.feed').innerHTML;
-                done()
-            });
-            expect(initFeed).not.toBe(newFeed);
+        it('should change page content', function(){
+            expect(newFeed !== initFeed).toBe(true);
         });
-    });
+    })
 });
