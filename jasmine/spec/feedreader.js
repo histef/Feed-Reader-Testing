@@ -95,7 +95,6 @@ $(function() {
         });
 
         it('should have an entry in the feed container', function(){
-            //could also use a .feed.child.length to be greater than 0;
             const container = document.querySelectorAll('.feed .entry');
             expect(container.length).toBeGreaterThan(0);
         });
@@ -113,12 +112,12 @@ $(function() {
         beforeEach(function(done){
             //call first loadfeed, save input
             loadFeed(0, ()=>{
-                initFeed = document.querySelector('.feed').innerHTML;                
-            });
-            //call second loadfeed, THEN execute done() to signal to run test
-            loadFeed(1, ()=>{
-                newFeed = document.querySelector('.feed').innerHTML;
-                done();
+                initFeed = document.querySelector('.feed').innerHTML;
+                //call second loadfeed, THEN execute done() to signal to run test
+                loadFeed(1, ()=>{
+                    newFeed = document.querySelector('.feed').innerHTML;
+                    done();
+                });
             });
         });
 
