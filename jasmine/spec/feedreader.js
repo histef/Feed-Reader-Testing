@@ -49,9 +49,7 @@ $(function() {
     /* Write a new test suite named "The menu" */
     describe('The menu', function(){
         /* Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
+         * hidden by default.
          */
         it('should be hidden by default', function(){
             let hiddenMenu = document.body.classList.contains('menu-hidden');
@@ -79,8 +77,6 @@ $(function() {
         /* Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
-         * Remember, loadFeed() is asynchronous so this test will require
-         * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 
         beforeEach(function(done){
@@ -90,6 +86,7 @@ $(function() {
             });
         });
 
+        //Additional test: use spyOn loadFeed, for practice.
         it('loadFeed should be called on', function(done){
             spyOn(window, 'loadFeed');
             loadFeed();
@@ -99,16 +96,14 @@ $(function() {
 
         it('should have an entry in the feed container', function(){
             //could also use a .feed.child.length to be greater than 0;
-            const container = document.querySelector('.feed');
-            const emptyContainer = container.innerHTML === "";
-            expect(emptyContainer).toEqual(false);
+            const container = document.querySelectorAll('.feed .entry');
+            expect(container.length).toBeGreaterThan(0);
         });
     });
 
     /* Write a new test suite named "New Feed Selection" */
         /* Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
          */
     describe('New Feed Selection', function(){
 
@@ -123,7 +118,7 @@ $(function() {
             //call second loadfeed, THEN execute done() to signal to run test
             loadFeed(1, ()=>{
                 newFeed = document.querySelector('.feed').innerHTML;
-            done();
+                done();
             });
         });
 
