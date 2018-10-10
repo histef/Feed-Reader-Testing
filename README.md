@@ -12,7 +12,7 @@ I was supplied with a basic news feed website and I had to test whether it was w
 
 Simply clone repo and run the index.html file in your browser. See whether the application passes the spec tests at the bottom of the page.
 
-![test results](Feed-Reader-Testing/image/test-screenshot.png)
+![test results](https://github.com/histef/Feed-Reader-Testing/blob/master/image/test-screenshot.png)
 
 ## Tests Ran
 * RSS feeds are defined
